@@ -1,4 +1,4 @@
-defmodule Exercise.ChapterThree.One do
+defmodule Exercise.ChapterTwo.One do
   def calculate_price(list, total_price \\ 0)
 
   def calculate_price([], total_price), do: total_price
