@@ -28,7 +28,7 @@ defmodule DungeonCrawl.CLI.HeroChoice do
 
   defp generate_question(options) do
     options = Enum.join(1..Enum.count(options), ",")
-    "Which one? [#options}]\n"
+    "Which one? [#{options}]\n"
   end
 
   defp parse_answer(answer) do
