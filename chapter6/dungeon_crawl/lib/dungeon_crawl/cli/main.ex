@@ -7,7 +7,7 @@ defmodule DungeonCrawl.CLI.Main do
 
   defp welcome_message do
     Shell.info("== Dungeon Crawl ===")
-    Shell.info("You awak in a dungeon full of monsters.")
+    Shell.info("You awake in a dungeon full of monsters.")
     Shell.info("You need to survive and find the exit.")
   end
 end
