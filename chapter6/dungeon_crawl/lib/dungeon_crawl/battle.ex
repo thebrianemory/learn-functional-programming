@@ -4,7 +4,7 @@ defmodule DungeonCrawl.Battle do
 
   def fight(
         character_a = %{hit_points: hit_points_a},
-        character(b = %{hit_points: hit_points_b})
+        character_b = %{hit_points: hit_points_b}
       )
       when hit_points_a == 0 or hit_points_b == 0,
       do: {character_a, character_b}
