@@ -11,7 +11,7 @@ defmodule DungeonCrawl.Battle do
 
   def fight(character_a, character_b) do
     character_b_after_damage = attack(character_a, character_b)
-    character_a_after_damage = attack(character_b, character_a)
+    character_a_after_damage = attack(character_b_after_damage, character_a)
     fight(character_a_after_damage, character_b_after_damage)
   end
 
@@ -34,6 +34,10 @@ defmodule DungeonCrawl.Battle do
 
   defp attack_message(character = %{name: "You"}, damage) do
     "You attack with #{character.attack_description} and deal #{damage} damage."
+  end
+
+  defp attack_message(character, damage) do
+    "#{character.name} attacks with #{character.attack_description} and deals #{damage} damage."
   end
 
   defp receive_message(character = %{name: "You"}, damage) do
