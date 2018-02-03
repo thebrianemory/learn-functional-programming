@@ -4,7 +4,7 @@ defmodule DungeonCrawl.CLI.Main do
   def start_game do
     welcome_message()
     Shell.prompt("Press enter to continue")
-    crawl(hero_choice, DungeonCrawl.Room.all())
+    crawl(hero_choice(), DungeonCrawl.Room.all())
   end
 
   defp welcome_message do
