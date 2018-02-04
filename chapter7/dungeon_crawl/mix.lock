@@ -1,3 +1,4 @@
 %{
   "dialyxir": {:hex, :dialyxir, "0.5.1", "b331b091720fd93e878137add264bac4f644e1ddae07a70bf7062c7862c4b952", [:mix], [], "hexpm"},
+  "monadex": {:hex, :monadex, "1.1.2", "a04e909731fae84cfeac98e5205f38c2da40b0e7cc2bac62e8952de08e929ed0", [:mix], [], "hexpm"},
 }
