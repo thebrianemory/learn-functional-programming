@@ -1,9 +1,11 @@
 defmodule ZeroShop do
-  def checkout(price) do
-    case ask_number("Quantity?") do
-      :error -> IO.puts("It's not a number")
-      {quantity, _} -> quantity * price
-    end
+  def checkout() do
+    result =
+      with {quantity, _} <- ask_number("Quantity"),
+           {price, _} <- ask_number("Price?"),
+           do: quantity * price
+
+    if result == :error, do: IO.puts("It's not a number"), else: result
   end
 
   def ask_number(message) do
