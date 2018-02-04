@@ -16,57 +16,25 @@ defmodule DungeonCrawl.CLI.BaseCommands do
     "Which one? [#{options}]\n"
   end
 
-  @invalid_option {:error, "Invalid option"}
-
-  def parse_answer(answer) do
-    case Integer.parse(answer) do
-      :error -> throw(@invalid_option)
-      {option, _} -> option - 1
-    end
-  end
-
-  def find_option_by_index(index, options) do
-    Enum.at(options, index) || throw(@invalid_option)
-  end
-
-  def ask_for_index(options) do
+  def ask_for_option(options) do
     answer =
       options
       |> display_options
       |> generate_question
       |> Shell.prompt()
-      |> Integer.parse()
 
-    case answer do
-      :error ->
-        display_invalid_option()
-        ask_for_index(options)
-
-      {option, _} ->
-        option - 1
+    with {option, _} <- Integer.parse(answer),
+         chosen when chosen != nil <- Enum.att(options, option - 1) do
+      chosen
+    else
+      :error -> retry(options)
+      nil -> retry(options)
     end
   end
 
-  def display_invalid_option do
-    Shell.cmd("clear")
-    Shell.error("Invalid option.")
-    Shell.prompt("Press enter to try again")
-    Shell.cmd("clear")
-  end
-
-  def ask_for_option(options) do
-    try do
-      options
-      |> display_options
-      |> generate_question
-      |> Shell.prompt()
-      |> parse_answer
-      |> find_option_by_index(options)
-    catch
-      {:error, message} ->
-        display_error(message)
-        ask_for_option(options)
-    end
+  def retry(options) do
+    display_error("Invalid option")
+    ask_for_option(options)
   end
 
   def display_error(message) do
